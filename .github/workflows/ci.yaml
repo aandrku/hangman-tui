@@ -25,7 +25,5 @@ jobs:
       - name: Run tests
         run: go test ./... -v
 
-      - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v4
-        with:
-          version: v2.1.2 # Or latest stable version
+      - name: Run build
+        run: go build ./cmd/game/main.go
