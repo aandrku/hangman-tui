@@ -1,7 +1,9 @@
 package screen
 
-// cell represents an individual cell on the screen
-type cell struct {
+import "hangman-tui/pkg/ansi"
+
+// Cell represents an individual Cell on the screen
+type Cell struct {
 	char  rune
-	style string
+	style ansi.EscapeSequence
 }

@@ -2,12 +2,13 @@ package screen
 
 import (
 	"fmt"
+	"hangman-tui/pkg/ansi"
 	"strings"
 )
 
 // Clear clears the screenBuffer.
 func Clear() {
-	emptyCell := cell{
+	emptyCell := Cell{
 		char:  ' ',
 		style: "",
 	} // used to clean the screen
@@ -26,7 +27,7 @@ func Update() {
 	}
 
 	builder := strings.Builder{}
-	currStyle := ""
+	currStyle := ansi.EscapeSequence("")
 
 	for row := range currentHeight {
 		for col := range currentWidth {
@@ -37,7 +38,7 @@ func Update() {
 			if currStyle != style {
 				currStyle = style
 				builder.WriteString("\033[0m")
-				builder.WriteString(style)
+				builder.WriteString(string(style))
 			}
 
 			builder.WriteString(cursor)
@@ -60,7 +61,7 @@ func drawSmallScreenWarning() {
 }
 
 // DrawChar draws a character on the screen.
-func DrawChar(char rune, style string, row, column int) {
+func DrawChar(char rune, style ansi.EscapeSequence, row, column int) {
 	// guards
 	if row < 0 || row >= currentHeight {
 		return
@@ -69,7 +70,7 @@ func DrawChar(char rune, style string, row, column int) {
 		return
 	}
 
-	c := cell{
+	c := Cell{
 		char:  char,
 		style: style,
 	}
