@@ -45,10 +45,10 @@ const (
 )
 
 // ANSI escape sequence that sets foreground color (256 colors)
-const ColorTemplate256 = pref + "[38;5;%d"
+const ColorTemplate256 = pref + "[38;5;%dm"
 
 // ANSI escape sequence that sets background color (256 colors)
-const BgColorTemplate256 = pref + "[48;5;%d"
+const BgColorTemplate256 = pref + "[48;5;%dm"
 
 // Color256 returns an ANSI escape sequence that sets foreground color specified by color parameter.
 func Color256(color byte) EscapeSequence {
