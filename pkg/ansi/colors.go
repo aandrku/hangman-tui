@@ -6,42 +6,42 @@ import (
 
 // ANSI Escape sequence to set foreground color (16 colors)
 const (
-	Black         = pref + "[0;30m"
-	Red           = pref + "[0;31m"
-	Green         = pref + "[0;32m"
-	Yellow        = pref + "[0;33m"
-	Blue          = pref + "[0;34m"
-	Magenta       = pref + "[0;35m"
-	Cyan          = pref + "[0;36m"
-	White         = pref + "[0;37m"
-	BrightBlack   = pref + "[0;90m"
-	BrightRed     = pref + "[0;91m"
-	BrightGreen   = pref + "[0;92m"
-	BrightYellow  = pref + "[0;93m"
-	BrightBlue    = pref + "[0;94m"
-	BrightMagenta = pref + "[0;95m"
-	BrightCyan    = pref + "[0;96m"
-	BrightWhite   = pref + "[0;97m"
+	Black         EscapeSequence = pref + "[0;30m"
+	Red           EscapeSequence = pref + "[0;31m"
+	Green         EscapeSequence = pref + "[0;32m"
+	Yellow        EscapeSequence = pref + "[0;33m"
+	Blue          EscapeSequence = pref + "[0;34m"
+	Magenta       EscapeSequence = pref + "[0;35m"
+	Cyan          EscapeSequence = pref + "[0;36m"
+	White         EscapeSequence = pref + "[0;37m"
+	BrightBlack   EscapeSequence = pref + "[0;90m"
+	BrightRed     EscapeSequence = pref + "[0;91m"
+	BrightGreen   EscapeSequence = pref + "[0;92m"
+	BrightYellow  EscapeSequence = pref + "[0;93m"
+	BrightBlue    EscapeSequence = pref + "[0;94m"
+	BrightMagenta EscapeSequence = pref + "[0;95m"
+	BrightCyan    EscapeSequence = pref + "[0;96m"
+	BrightWhite   EscapeSequence = pref + "[0;97m"
 )
 
 // ANSI Escape sequence to set background color (16 colors)
 const (
-	BlackBg         = pref + "[40m"
-	RedBg           = pref + "[41m"
-	GreenBg         = pref + "[42m"
-	YellowBg        = pref + "[43m"
-	BlueBg          = pref + "[44m"
-	MagentaBg       = pref + "[45m"
-	CyanBg          = pref + "[46m"
-	WhileBg         = pref + "[47m"
-	BrightBlackBg   = pref + "[100m"
-	BrightRedBg     = pref + "[101m"
-	BrightGreenBg   = pref + "[102m"
-	BrightYellowBg  = pref + "[103m"
-	BrightBlueBg    = pref + "[104m"
-	BrightMagentaBg = pref + "[105m"
-	BrightCyanBg    = pref + "[106m"
-	BrightWhiteBg   = pref + "[107m"
+	BlackBg         EscapeSequence = pref + "[40m"
+	RedBg           EscapeSequence = pref + "[41m"
+	GreenBg         EscapeSequence = pref + "[42m"
+	YellowBg        EscapeSequence = pref + "[43m"
+	BlueBg          EscapeSequence = pref + "[44m"
+	MagentaBg       EscapeSequence = pref + "[45m"
+	CyanBg          EscapeSequence = pref + "[46m"
+	WhileBg         EscapeSequence = pref + "[47m"
+	BrightBlackBg   EscapeSequence = pref + "[100m"
+	BrightRedBg     EscapeSequence = pref + "[101m"
+	BrightGreenBg   EscapeSequence = pref + "[102m"
+	BrightYellowBg  EscapeSequence = pref + "[103m"
+	BrightBlueBg    EscapeSequence = pref + "[104m"
+	BrightMagentaBg EscapeSequence = pref + "[105m"
+	BrightCyanBg    EscapeSequence = pref + "[106m"
+	BrightWhiteBg   EscapeSequence = pref + "[107m"
 )
 
 // ANSI escape sequence that sets foreground color (256 colors)
@@ -51,11 +51,11 @@ const ColorTemplate256 = pref + "[38;5;%d"
 const BgColorTemplate256 = pref + "[48;5;%d"
 
 // Color256 returns an ANSI escape sequence that sets foreground color specified by color parameter.
-func Color256(color byte) string {
-	return fmt.Sprintf(ColorTemplate256, color)
+func Color256(color byte) EscapeSequence {
+	return EscapeSequence(fmt.Sprintf(ColorTemplate256, color))
 }
 
 // BgColor256 returns an ANSI escape sequence that sets background color specified by color parameter.
-func BgColor256(color byte) string {
-	return fmt.Sprintf(BgColorTemplate256, color)
+func BgColor256(color byte) EscapeSequence {
+	return EscapeSequence(fmt.Sprintf(BgColorTemplate256, color))
 }

@@ -1,4 +1,7 @@
 package ansi
 
 // ANSI escape sequence prefix
-const esc = "\033"
+const pref = "\033"
+
+// EscapeSequence represents an ANSI escape sequence.
+type EscapeSequence string
