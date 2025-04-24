@@ -21,22 +21,25 @@ func Start() {
 	}
 }
 
-func Exit(err string) {
+func Exit(msg string) {
 	// show cursor
 	fmt.Print(ansi.ShowCursor)
 	fmt.Print(ansi.ClearScreen)
 
 	fmt.Print(ansi.CursorPosition(1, 1))
 	fmt.Print(ansi.Red)
-	if err == "" {
+	if msg == "" {
 		fmt.Print("\nThank you for playing", ansi.Magenta, " Hangman TUI\n\n")
 	} else {
-		fmt.Println(err)
+		fmt.Println(msg)
 	}
 	fmt.Print(ansi.Reset)
 
 	// close keyboard
-	keyboard.Close()
+	err := keyboard.Close()
+	if err != nil {
+		panic(err)
+	}
 
 	os.Exit(0)
 }
