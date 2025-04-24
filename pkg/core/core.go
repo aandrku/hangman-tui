@@ -1,6 +1,7 @@
 package core
 
 import (
+	"hangman-tui/pkg/screen"
 	"sync"
 	"time"
 )
@@ -35,7 +36,9 @@ func (c *Core) Run() {
 
 		}
 
+		screen.Clear()
 		c.currentScene.Render()
+		screen.Update()
 
 		toSleep := frameTime - time.Since(start)
 		if toSleep > 0 {
