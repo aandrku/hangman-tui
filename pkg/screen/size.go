@@ -25,6 +25,11 @@ func GetSize() (int, int) {
 	return currentWidth, currentHeight
 }
 
+// GetSize returns current screen center point.
+func GetCenter() (int, int) {
+	return currentWidth, currentHeight
+}
+
 // GetWidth returns current screen width
 func GetWidth() int {
 	return currentWidth
