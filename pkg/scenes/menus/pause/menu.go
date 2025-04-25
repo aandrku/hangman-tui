@@ -21,7 +21,7 @@ const (
 func NewMenu(manager scene.Manager) *menu.Menu {
 	m := &menu.Menu{}
 
-	m.SetHeader(" Home Menu ")
+	m.SetHeader(" Game Paused ")
 	m.SetWidth(width)
 	m.SetHeight(height)
 
