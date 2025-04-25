@@ -34,18 +34,27 @@ func (wo WordLengthOption) OnRight() {
 func (wo WordLengthOption) OnEnter() {}
 func (wo WordLengthOption) String() string {
 	s := words.GetStore()
-	length := s.CurrentLength()
-	lengthStr := fmt.Sprintf("<%*s >", optionCounterLength, strconv.Itoa(length))
-	return fmt.Sprintf("%-*s %s", optionLength-optionCounterLength-2, " Word Length", lengthStr)
+	l := s.CurrentLength()
+	lStr := fmt.Sprintf("<%*s > ", optionCounterLength, strconv.Itoa(l))
+	return fmt.Sprintf("%-*s %s", optionLength-optionCounterLength-3, " Word Length", lStr)
 }
 
 type AttemptsCountOption struct {
 }
 
-func (ao AttemptsCountOption) OnLeft()        {}
-func (ao AttemptsCountOption) OnRight()       {}
-func (ao AttemptsCountOption) OnEnter()       {}
-func (ao AttemptsCountOption) String() string { return " Attempts" }
+func (ao AttemptsCountOption) OnLeft() {
+	decreaseAttempts()
+
+}
+func (ao AttemptsCountOption) OnRight() {
+	increaseAttempts()
+}
+func (ao AttemptsCountOption) OnEnter() {}
+func (ao AttemptsCountOption) String() string {
+	a := attemptsCounter
+	aStr := fmt.Sprintf("<%*s > ", optionCounterLength, strconv.Itoa(a))
+	return fmt.Sprintf("%-*s %s", optionLength-optionCounterLength-3, " Attempts", aStr)
+}
 
 type ExitOption struct {
 }
