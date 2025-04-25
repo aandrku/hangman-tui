@@ -4,6 +4,7 @@ import (
 	"flag"
 	"hangman-tui/pkg/boot"
 	"hangman-tui/pkg/game"
+	"hangman-tui/pkg/input"
 	"hangman-tui/pkg/screen"
 	"hangman-tui/pkg/words"
 )
@@ -11,6 +12,9 @@ import (
 func main() {
 	boot.StartUp()
 	defer boot.Shutdown("")
+
+	input.Init()
+	defer input.Close()
 
 	// load custom words if specified by user
 	wordsFile := flag.String("words", "", "usage: hangman -words<path/to/the/file/with/words>")

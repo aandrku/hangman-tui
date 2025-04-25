@@ -1,8 +1,7 @@
 package game
 
 import (
-	"github.com/eiannone/keyboard"
-	"hangman-tui/pkg/boot"
+	"hangman-tui/pkg/input"
 	"hangman-tui/pkg/scenes/scene"
 	"hangman-tui/pkg/scenes/scene/factory"
 	"hangman-tui/pkg/screen"
@@ -28,16 +27,11 @@ type Game struct {
 
 func (g *Game) Run() {
 	// open keyboard
-	var err error
-	keyboardInput, err = keyboard.GetKeys(1)
-	if err != nil {
-		boot.Shutdown("Hangman TUI failed to open keyboard: " + err.Error())
-	}
 
 	for {
 		start := time.Now()
 
-		if key, ok := getKey(); ok {
+		if key, ok := input.GetKey(); ok {
 			g.scene.ProcessKey(key)
 
 		}
