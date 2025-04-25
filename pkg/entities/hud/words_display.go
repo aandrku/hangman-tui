@@ -31,6 +31,10 @@ func (d *WordDisplay) Reveil(letter rune) {
 	}
 }
 
+func (d *WordDisplay) IsGuessed() bool {
+	return string(d.word) == string(d.display)
+}
+
 func (d *WordDisplay) Render() {
 	row := 0
 	col := 22

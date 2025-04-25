@@ -46,6 +46,9 @@ func (g *Gameplay) ProcessLetter(letter rune) {
 	if strings.ContainsRune(g.state.Word, letter) {
 		g.state.LettersDisplay.Reveil(letter)
 		g.state.WordDisplay.Reveil(letter)
+		if g.state.WordDisplay.IsGuessed() {
+			g.manager.SetScene(scene.HomeMenu)
+		}
 	} else {
 		g.state.LettersDisplay.Cross(letter)
 		attemtpsLeft := g.state.AttemptsDisplay.Decrement()
