@@ -24,7 +24,7 @@ func main() {
 	screen.Init()
 
 	// start the core with home menu
-	c := game.GetInstance()
+	c := game.New()
 	c.Run()
 
 }

@@ -11,20 +11,15 @@ import (
 )
 
 var lock sync.Mutex
-var instance *Game
+var g *Game
 
 const frameTime = time.Second / 60
 
-func GetInstance() *Game {
-	if instance == nil {
-		lock.Lock()
-		defer lock.Unlock()
-		if instance == nil {
-			instance = &Game{}
-			instance.SetScene(scene.HomeMenu)
-		}
-	}
-	return instance
+func New() *Game {
+	g = &Game{}
+	g.SetScene(scene.HomeMenu)
+
+	return g
 }
 
 type Game struct {
