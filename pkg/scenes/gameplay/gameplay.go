@@ -48,7 +48,10 @@ func (g *Gameplay) ProcessLetter(letter rune) {
 		g.state.WordDisplay.Reveil(letter)
 	} else {
 		g.state.LettersDisplay.Cross(letter)
-		g.state.Attempts--
+		attemtpsLeft := g.state.AttemptsDisplay.Decrement()
+		if attemtpsLeft < 1 {
+			g.manager.SetScene(scene.HomeMenu)
+		}
 	}
 	g.state.ProcessedLetters[letter] = true
 }
@@ -56,4 +59,5 @@ func (g *Gameplay) ProcessLetter(letter rune) {
 func (g *Gameplay) Render() {
 	g.state.LettersDisplay.Render()
 	g.state.WordDisplay.Render()
+	g.state.AttemptsDisplay.Render()
 }
