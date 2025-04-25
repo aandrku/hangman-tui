@@ -1,6 +1,7 @@
 package factory
 
 import (
+	"hangman-tui/pkg/scenes/gameover"
 	"hangman-tui/pkg/scenes/gameplay"
 	"hangman-tui/pkg/scenes/menus/home"
 	"hangman-tui/pkg/scenes/menus/pause"
@@ -15,6 +16,8 @@ func Make(manager scene.Manager, id scene.ID) scene.Scene {
 		return gameplay.New(manager)
 	case scene.PauseMenu:
 		return pause.NewMenu(manager)
+	case scene.GameOver:
+		return gameover.NewScene(manager)
 	}
 
 	panic("Scene factory should always return from a switch statement")

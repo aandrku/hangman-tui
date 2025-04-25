@@ -28,6 +28,10 @@ type State struct {
 	status StateStatus
 }
 
+func (s *State) Status() StateStatus {
+	return s.status
+}
+
 func (s *State) SetStatus(status StateStatus) {
 	s.status = status
 }

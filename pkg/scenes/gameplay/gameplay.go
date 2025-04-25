@@ -48,14 +48,14 @@ func (g *Gameplay) ProcessLetter(letter rune) {
 		g.state.WordDisplay.Reveil(letter)
 		if g.state.WordDisplay.IsGuessed() {
 			g.state.SetStatus(state.GameWon)
-			g.manager.SetScene(scene.HomeMenu)
+			g.manager.SetScene(scene.GameOver)
 		}
 	} else {
 		g.state.LettersDisplay.Cross(letter)
 		attemtpsLeft := g.state.AttemptsDisplay.Decrement()
 		if attemtpsLeft < 1 {
 			g.state.SetStatus(state.GameLost)
-			g.manager.SetScene(scene.HomeMenu)
+			g.manager.SetScene(scene.GameOver)
 		}
 	}
 	g.state.ProcessedLetters[letter] = true

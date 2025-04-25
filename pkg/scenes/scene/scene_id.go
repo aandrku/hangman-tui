@@ -6,5 +6,5 @@ const (
 	HomeMenu ID = iota
 	Gameplay
 	PauseMenu
-	GameSummary
+	GameOver
 )
