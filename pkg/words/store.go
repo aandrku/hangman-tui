@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	_ "embed"
-	"hangman-tui/pkg/core"
+	"hangman-tui/pkg/boot"
 	"math"
 	"os"
 	"strings"
@@ -46,7 +46,7 @@ func (s *Store) readDefaultWords() {
 func (s *Store) ReadFromFile(file string) {
 	f, err := os.Open(file)
 	if err != nil {
-		core.Exit("Failed to get words: " + err.Error())
+		boot.Exit("Failed to get words: " + err.Error())
 	}
 	defer f.Close()
 
