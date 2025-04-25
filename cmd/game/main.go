@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"hangman-tui/pkg/boot"
-	"hangman-tui/pkg/core"
+	"hangman-tui/pkg/game"
 	"hangman-tui/pkg/screen"
 	"hangman-tui/pkg/words"
 )
@@ -24,7 +24,7 @@ func main() {
 	screen.Init()
 
 	// start the core with home menu
-	c := core.GetInstance()
+	c := game.GetInstance()
 	c.Run()
 
 }

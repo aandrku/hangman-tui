@@ -8,6 +8,4 @@ import (
 func StartUp() {
 	// hide cursor
 	fmt.Print(ansi.HideCursor)
-
-	// open keyboard
 }

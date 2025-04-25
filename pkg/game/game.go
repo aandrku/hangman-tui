@@ -1,4 +1,4 @@
-package core
+package game
 
 import (
 	"github.com/eiannone/keyboard"
@@ -11,27 +11,27 @@ import (
 )
 
 var lock sync.Mutex
-var instance *Core
+var instance *Game
 
 const frameTime = time.Second / 60
 
-func GetInstance() *Core {
+func GetInstance() *Game {
 	if instance == nil {
 		lock.Lock()
 		defer lock.Unlock()
 		if instance == nil {
-			instance = &Core{}
+			instance = &Game{}
 			instance.SetScene(scene.HomeMenu)
 		}
 	}
 	return instance
 }
 
-type Core struct {
+type Game struct {
 	scene scene.Scene
 }
 
-func (c *Core) Run() {
+func (g *Game) Run() {
 	// open keyboard
 	var err error
 	keyboardInput, err = keyboard.GetKeys(1)
@@ -43,12 +43,12 @@ func (c *Core) Run() {
 		start := time.Now()
 
 		if key, ok := getKey(); ok {
-			c.scene.ProcessKey(key)
+			g.scene.ProcessKey(key)
 
 		}
 
 		screen.Clear()
-		c.scene.Render()
+		g.scene.Render()
 		screen.Update()
 
 		toSleep := frameTime - time.Since(start)
@@ -58,6 +58,6 @@ func (c *Core) Run() {
 	}
 }
 
-func (c *Core) SetScene(sceneId scene.ID) {
-	c.scene = factory.Make(c, sceneId)
+func (g *Game) SetScene(sceneId scene.ID) {
+	g.scene = factory.Make(g, sceneId)
 }
