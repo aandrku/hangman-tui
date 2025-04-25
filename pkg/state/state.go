@@ -4,6 +4,14 @@ import (
 	"hangman-tui/pkg/entities/hud"
 )
 
+type StateStatus int
+
+const (
+	GameWon = iota
+	GameLost
+	GameRunning
+)
+
 type State struct {
 	// For Gameplay
 
@@ -15,6 +23,13 @@ type State struct {
 
 	Word             string
 	ProcessedLetters map[rune]bool
+
+	// For gameplay and game summary
+	status StateStatus
+}
+
+func (s *State) SetStatus(status StateStatus) {
+	s.status = status
 }
 
 func (s *State) Restart(word string, attempts int) {
@@ -24,4 +39,6 @@ func (s *State) Restart(word string, attempts int) {
 
 	s.LettersDisplay = hud.NewLettersDisplay()
 	s.WordDisplay = hud.NewWordDisplay(word)
+
+	s.status = GameRunning
 }
