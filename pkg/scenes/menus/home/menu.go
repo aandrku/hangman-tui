@@ -3,6 +3,7 @@ package home
 import (
 	"hangman-tui/pkg/ansi"
 	"hangman-tui/pkg/menu"
+	"hangman-tui/pkg/scenes/scene"
 )
 
 const (
@@ -17,7 +18,7 @@ const (
 )
 
 // Menu represents a home menu scene.
-func NewMenu() *menu.Menu {
+func NewMenu(manager scene.Manager) *menu.Menu {
 	m := &menu.Menu{}
 
 	m.SetHeader(" Home Menu ")
@@ -28,7 +29,7 @@ func NewMenu() *menu.Menu {
 	m.SetBorderStyle(borderStyle)
 	m.SetOptionStyle(optionStyle)
 
-	m.AddOption(PlayOption{})
+	m.AddOption(PlayOption{manager: manager})
 	m.AddOption(WordLengthOption{})
 	m.AddOption(AttemptsCountOption{})
 	m.AddOption(ExitOption{})

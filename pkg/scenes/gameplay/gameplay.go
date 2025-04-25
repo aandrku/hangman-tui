@@ -2,19 +2,23 @@ package gameplay
 
 import (
 	"github.com/eiannone/keyboard"
+	"hangman-tui/pkg/scenes/scene"
 )
 
-func New(attempts int) *Gameplay {
-	g := &Gameplay{}
+func New(manager scene.Manager) *Gameplay {
+	g := &Gameplay{manager: manager}
 
 	return g
 }
 
 type Gameplay struct {
+	manager scene.Manager
 }
 
 func (g *Gameplay) ProcessKey(key keyboard.KeyEvent) {
-
+	if key.Key == keyboard.KeyEsc {
+		g.manager.SetScene(scene.PauseMenu)
+	}
 }
 
 func (g *Gameplay) Render() {

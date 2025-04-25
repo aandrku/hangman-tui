@@ -2,8 +2,8 @@ package pause
 
 import (
 	"hangman-tui/pkg/ansi"
-	"hangman-tui/pkg/core"
 	"hangman-tui/pkg/menu"
+	"hangman-tui/pkg/scenes/scene"
 )
 
 const (
@@ -18,7 +18,7 @@ const (
 )
 
 // Menu represents a home menu scene.
-func NewMenu(gameplay core.Scene) *menu.Menu {
+func NewMenu(manager scene.Manager) *menu.Menu {
 	m := &menu.Menu{}
 
 	m.SetHeader(" Home Menu ")
@@ -29,8 +29,8 @@ func NewMenu(gameplay core.Scene) *menu.Menu {
 	m.SetBorderStyle(borderStyle)
 	m.SetOptionStyle(optionStyle)
 
-	m.AddOption(ReturnToGameOption{gameplay: gameplay})
-	m.AddOption(BackToHomeMenuOption{})
+	m.AddOption(ReturnToGameOption{manager: manager})
+	m.AddOption(BackToHomeMenuOption{manager: manager})
 	m.AddOption(ReturnToShellOption{})
 
 	return m

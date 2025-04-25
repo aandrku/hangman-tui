@@ -1,9 +1,9 @@
 package scene
 
-type SceneID int
+type ID int
 
 const (
-	HomeMenu SceneID = iota
+	HomeMenu ID = iota
 	Gameplay
 	PauseMenu
 	GameSummary

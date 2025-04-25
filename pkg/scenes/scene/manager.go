@@ -1,5 +1,5 @@
 package scene
 
 type Manager interface {
-	SetScene(sceneId SceneID)
+	SetScene(sceneId ID)
 }

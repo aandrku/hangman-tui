@@ -1,6 +1,8 @@
 package core
 
 import (
+	"hangman-tui/pkg/scenes/scene"
+	"hangman-tui/pkg/scenes/scene/factory"
 	"hangman-tui/pkg/screen"
 	"sync"
 	"time"
@@ -17,13 +19,14 @@ func GetInstance() *Core {
 		defer lock.Unlock()
 		if instance == nil {
 			instance = &Core{}
+			instance.SetScene(scene.HomeMenu)
 		}
 	}
 	return instance
 }
 
 type Core struct {
-	currentScene Scene
+	scene scene.Scene
 }
 
 func (c *Core) Run() {
@@ -32,12 +35,12 @@ func (c *Core) Run() {
 		start := time.Now()
 
 		if key, ok := getKey(); ok {
-			c.currentScene.ProcessKey(key)
+			c.scene.ProcessKey(key)
 
 		}
 
 		screen.Clear()
-		c.currentScene.Render()
+		c.scene.Render()
 		screen.Update()
 
 		toSleep := frameTime - time.Since(start)
@@ -47,6 +50,6 @@ func (c *Core) Run() {
 	}
 }
 
-func (c *Core) SetScene(scene Scene) {
-	c.currentScene = scene
+func (c *Core) SetScene(sceneId scene.ID) {
+	c.scene = factory.Make(c, sceneId)
 }

@@ -2,7 +2,8 @@ package home
 
 import (
 	"fmt"
-	"hangman-tui/pkg/core"
+	"hangman-tui/pkg/boot"
+	"hangman-tui/pkg/scenes/scene"
 	"hangman-tui/pkg/words"
 	"strconv"
 )
@@ -13,11 +14,14 @@ const (
 )
 
 type PlayOption struct {
+	manager scene.Manager
 }
 
-func (po PlayOption) OnLeft()        {}
-func (po PlayOption) OnRight()       {}
-func (po PlayOption) OnEnter()       {}
+func (po PlayOption) OnLeft()  {}
+func (po PlayOption) OnRight() {}
+func (po PlayOption) OnEnter() {
+	po.manager.SetScene(scene.Gameplay)
+}
 func (po PlayOption) String() string { return " Play" }
 
 type WordLengthOption struct {
@@ -62,6 +66,6 @@ type ExitOption struct {
 func (eo ExitOption) OnLeft()  {}
 func (eo ExitOption) OnRight() {}
 func (eo ExitOption) OnEnter() {
-	core.Exit("")
+	boot.Exit("")
 }
 func (eo ExitOption) String() string { return " Exit" }

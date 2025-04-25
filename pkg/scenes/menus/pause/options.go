@@ -1,8 +1,8 @@
 package pause
 
 import (
-	"hangman-tui/pkg/core"
-	"hangman-tui/pkg/scenes"
+	"hangman-tui/pkg/boot"
+	"hangman-tui/pkg/scenes/scene"
 )
 
 const (
@@ -11,26 +11,24 @@ const (
 )
 
 type ReturnToGameOption struct {
-	gameplay core.Scene
+	manager scene.Manager
 }
 
 func (r ReturnToGameOption) OnLeft()  {}
 func (r ReturnToGameOption) OnRight() {}
 func (r ReturnToGameOption) OnEnter() {
-	c := core.GetInstance()
-	c.SetScene(r.gameplay)
+	r.manager.SetScene(scene.Gameplay)
 }
 func (r ReturnToGameOption) String() string { return " Return to the Game" }
 
 type BackToHomeMenuOption struct {
+	manager scene.Manager
 }
 
 func (b BackToHomeMenuOption) OnLeft()  {}
 func (b BackToHomeMenuOption) OnRight() {}
 func (b BackToHomeMenuOption) OnEnter() {
-	homeMenu := scenes.NewHomeMenu()
-	c := core.GetInstance()
-	c.SetScene(homeMenu)
+	b.manager.SetScene(scene.HomeMenu)
 }
 func (b BackToHomeMenuOption) String() string { return " Back to Home Menu" }
 
@@ -40,6 +38,6 @@ type ReturnToShellOption struct {
 func (r ReturnToShellOption) OnLeft()  {}
 func (r ReturnToShellOption) OnRight() {}
 func (po ReturnToShellOption) OnEnter() {
-	core.Exit("")
+	boot.Exit("")
 }
 func (r ReturnToShellOption) String() string { return " Return to Shell" }
