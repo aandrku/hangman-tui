@@ -1,10 +1,8 @@
 package scene
 
-import (
-	"github.com/eiannone/keyboard"
-)
+import ()
 
 type Scene interface {
-	ProcessKey(key keyboard.KeyEvent)
+	ProcessKey()
 	Render()
 }

@@ -2,6 +2,7 @@ package gameplay
 
 import (
 	"github.com/eiannone/keyboard"
+	"hangman-tui/pkg/input"
 	"hangman-tui/pkg/scenes/scene"
 )
 
@@ -15,7 +16,11 @@ type Gameplay struct {
 	manager scene.Manager
 }
 
-func (g *Gameplay) ProcessKey(key keyboard.KeyEvent) {
+func (g *Gameplay) ProcessKey() {
+	key, ok := input.GetKey()
+	if !ok {
+		return
+	}
 	if key.Key == keyboard.KeyEsc {
 		g.manager.SetScene(scene.PauseMenu)
 	}

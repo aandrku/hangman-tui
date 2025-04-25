@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/eiannone/keyboard"
 	"hangman-tui/pkg/ansi"
+	"hangman-tui/pkg/input"
 	"hangman-tui/pkg/screen"
 	"hangman-tui/pkg/screen/draw"
 )
@@ -21,8 +22,9 @@ type Menu struct {
 	optionStyle ansi.EscapeSequence
 }
 
-func (m *Menu) ProcessKey(key keyboard.KeyEvent) {
+func (m *Menu) ProcessKey() {
 	index := m.currentOption
+	key := input.GetKeyBlocking()
 	switch {
 	case key.Rune == 'j' || key.Key == keyboard.KeyArrowDown:
 		m.NextOption()

@@ -1,15 +1,12 @@
 package game
 
 import (
-	"hangman-tui/pkg/input"
 	"hangman-tui/pkg/scenes/scene"
 	"hangman-tui/pkg/scenes/scene/factory"
 	"hangman-tui/pkg/screen"
-	"sync"
 	"time"
 )
 
-var lock sync.Mutex
 var g *Game
 
 const frameTime = time.Second / 60
@@ -26,15 +23,14 @@ type Game struct {
 }
 
 func (g *Game) Run() {
-	// open keyboard
+
+	screen.Clear()
+	g.scene.Render()
+	screen.Update()
 
 	for {
 		start := time.Now()
-
-		if key, ok := input.GetKey(); ok {
-			g.scene.ProcessKey(key)
-
-		}
+		g.scene.ProcessKey()
 
 		screen.Clear()
 		g.scene.Render()
