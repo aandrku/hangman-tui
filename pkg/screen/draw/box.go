@@ -26,19 +26,19 @@ const (
 
 func Box(row, col, height, width int, style ansi.EscapeSequence) {
 	rowIndex := row
-	lastRow := row + height
+	lastRow := row + height - 1
 	colIdex := col
-	lastCol := col + width
+	lastCol := col + width - 1
 
 	//draw vertical lines
-	for range height {
+	for range height - 1 {
 		screen.DrawChar(LightVertical, style, rowIndex, col)
 		screen.DrawChar(LightVertical, style, rowIndex, lastCol)
 		rowIndex++
 	}
 
 	// draw horizontal lines
-	for range width {
+	for range width - 1 {
 		screen.DrawChar(LightHorizontal, style, row, colIdex)
 		screen.DrawChar(LightHorizontal, style, lastRow, colIdex)
 		colIdex++

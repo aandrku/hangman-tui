@@ -62,7 +62,7 @@ func (m *Menu) Render() {
 		} else {
 			style = m.optionStyle
 		}
-		str := fmt.Sprintf("%-*s", m.width-1, v.String())
+		str := fmt.Sprintf("%-*s", m.width-2, v.String())
 		draw.String(str, style, optionRow, optionCol)
 		optionRow++
 	}

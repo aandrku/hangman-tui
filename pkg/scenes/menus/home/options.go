@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	optionLength        = 37
+	optionLength        = 36
 	optionCounterLength = 3
 )
 
