@@ -39,15 +39,21 @@ func (g *Gameplay) ProcessKey() {
 }
 
 func (g *Gameplay) ProcessLetter(letter rune) {
-	if strings.ContainsRune(g.state.Word, letter) {
-		g.state.LettersDisplay.Reveil(letter)
-	} else {
-		g.state.LettersDisplay.Cross(letter)
+	if _, ok := g.state.ProcessedLetters[letter]; ok {
+		return
 	}
 
+	if strings.ContainsRune(g.state.Word, letter) {
+		g.state.LettersDisplay.Reveil(letter)
+		g.state.WordDisplay.Reveil(letter)
+	} else {
+		g.state.LettersDisplay.Cross(letter)
+		g.state.Attempts--
+	}
+	g.state.ProcessedLetters[letter] = true
 }
 
 func (g *Gameplay) Render() {
 	g.state.LettersDisplay.Render()
-
+	g.state.WordDisplay.Render()
 }
