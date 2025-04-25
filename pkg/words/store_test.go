@@ -6,9 +6,6 @@ import (
 
 func TestStore(t *testing.T) {
 	s := GetStore()
-	if s == nil {
-		t.Errorf("received nil from GetStore")
-	}
 
 	s.ReadFromFile("./sample_data/words1.txt")
 

@@ -5,11 +5,6 @@ import (
 	"hangman-tui/pkg/scenes/scene"
 )
 
-const (
-	optionLength        = 37
-	optionCounterLength = 3
-)
-
 type ReturnToGameOption struct {
 	manager scene.Manager
 }

@@ -48,7 +48,9 @@ func (s *Store) ReadFromFile(file string) {
 	if err != nil {
 		boot.Exit("Failed to get words: " + err.Error())
 	}
-	defer f.Close()
+	defer func() {
+		_ = f.Close()
+	}()
 
 	r := bufio.NewReader(f)
 
