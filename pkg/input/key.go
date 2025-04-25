@@ -34,3 +34,9 @@ func GetKey() (keyboard.KeyEvent, bool) {
 		return keyboard.KeyEvent{}, false
 	}
 }
+
+func GetKeyBlocking() (keyboard.KeyEvent, bool) {
+	keyEvent := <-keyboardInput
+	preprocessKey(keyEvent)
+	return keyEvent, true
+}
