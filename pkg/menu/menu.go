@@ -22,19 +22,17 @@ type Menu struct {
 }
 
 func (m *Menu) ProcessKey(key keyboard.KeyEvent) {
+	index := m.currentOption
 	switch {
 	case key.Rune == 'j' || key.Key == keyboard.KeyArrowDown:
 		m.NextOption()
 	case key.Rune == 'k' || key.Key == keyboard.KeyArrowUp:
 		m.PrevOption()
 	case key.Rune == 'h' || key.Key == keyboard.KeyArrowLeft:
-		index := m.currentOption
 		m.options[index].OnLeft()
 	case key.Rune == 'l' || key.Key == keyboard.KeyArrowRight:
-		index := m.currentOption
 		m.options[index].OnRight()
 	case key.Key == keyboard.KeyEnter:
-		index := m.currentOption
 		m.options[index].OnEnter()
 	}
 }
@@ -62,7 +60,7 @@ func (m *Menu) Render() {
 		} else {
 			style = m.optionStyle
 		}
-		str := fmt.Sprintf("%-*s", m.width-2, v.String())
+		str := fmt.Sprintf("%-*s", m.width-1, v.String())
 		draw.String(str, style, optionRow, optionCol)
 		optionRow++
 	}
