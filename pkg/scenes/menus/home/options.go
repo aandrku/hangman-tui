@@ -20,6 +20,8 @@ type PlayOption struct {
 func (po PlayOption) OnLeft()  {}
 func (po PlayOption) OnRight() {}
 func (po PlayOption) OnEnter() {
+	state := po.manager.State()
+	state.Restart("hello", attemptsCounter)
 	po.manager.SetScene(scene.Gameplay)
 }
 func (po PlayOption) String() string { return " Play" }
