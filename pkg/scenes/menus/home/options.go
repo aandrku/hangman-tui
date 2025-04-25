@@ -66,6 +66,6 @@ type ExitOption struct {
 func (eo ExitOption) OnLeft()  {}
 func (eo ExitOption) OnRight() {}
 func (eo ExitOption) OnEnter() {
-	boot.Exit("")
+	boot.Shutdown("")
 }
 func (eo ExitOption) String() string { return " Exit" }

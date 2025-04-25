@@ -33,6 +33,6 @@ type ReturnToShellOption struct {
 func (r ReturnToShellOption) OnLeft()  {}
 func (r ReturnToShellOption) OnRight() {}
 func (po ReturnToShellOption) OnEnter() {
-	boot.Exit("")
+	boot.Shutdown("")
 }
 func (r ReturnToShellOption) String() string { return " Return to Shell" }

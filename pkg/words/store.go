@@ -46,7 +46,7 @@ func (s *Store) readDefaultWords() {
 func (s *Store) ReadFromFile(file string) {
 	f, err := os.Open(file)
 	if err != nil {
-		boot.Exit("Failed to get words: " + err.Error())
+		boot.Shutdown("Failed to get words: " + err.Error())
 	}
 	defer func() {
 		_ = f.Close()

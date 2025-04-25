@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func Exit(msg string) {
+func Shutdown(msg string) {
 	// show cursor
 	fmt.Print(ansi.ShowCursor)
 	fmt.Print(ansi.ClearScreen)

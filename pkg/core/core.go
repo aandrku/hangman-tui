@@ -1,6 +1,8 @@
 package core
 
 import (
+	"github.com/eiannone/keyboard"
+	"hangman-tui/pkg/boot"
 	"hangman-tui/pkg/scenes/scene"
 	"hangman-tui/pkg/scenes/scene/factory"
 	"hangman-tui/pkg/screen"
@@ -30,7 +32,13 @@ type Core struct {
 }
 
 func (c *Core) Run() {
-	Start()
+	// open keyboard
+	var err error
+	keyboardInput, err = keyboard.GetKeys(1)
+	if err != nil {
+		boot.Shutdown("Hangman TUI failed to open keyboard: " + err.Error())
+	}
+
 	for {
 		start := time.Now()
 

@@ -2,7 +2,10 @@ package core
 
 import (
 	"github.com/eiannone/keyboard"
+	"hangman-tui/pkg/boot"
 )
+
+var keyboardInput <-chan keyboard.KeyEvent
 
 func getKey() (keyboard.KeyEvent, bool) {
 	select {
@@ -16,6 +19,6 @@ func getKey() (keyboard.KeyEvent, bool) {
 
 func preprocessKey(key keyboard.KeyEvent) {
 	if key.Key == keyboard.KeyCtrlC {
-		Exit("")
+		boot.Shutdown("")
 	}
 }
