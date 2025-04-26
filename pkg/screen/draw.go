@@ -76,3 +76,16 @@ func DrawChar(char rune, style ansi.EscapeSequence, row, column int) {
 	}
 	screenBuffer[row][column] = c
 }
+
+// DrawCell draws a cell on the screen.
+func DrawCell(cell Cell, row, column int) {
+	// guards
+	if row < 0 || row >= currentHeight {
+		return
+	}
+	if column < 0 || column >= currentWidth {
+		return
+	}
+
+	screenBuffer[row][column] = cell
+}
