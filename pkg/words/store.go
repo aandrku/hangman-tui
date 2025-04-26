@@ -6,7 +6,9 @@ import (
 	_ "embed"
 	"hangman-tui/pkg/boot"
 	"math"
+	"math/rand"
 	"os"
+	"slices"
 	"strings"
 	"sync"
 )
@@ -110,4 +112,12 @@ func (s *Store) DecreaseLength() {
 	for !s.availableLength[s.length] && s.length != s.minLength {
 		s.length--
 	}
+}
+
+func (s *Store) GetWord() string {
+	filtered := slices.DeleteFunc(s.words, func(val string) bool { return len(val) != s.length })
+
+	random := rand.Intn(len(filtered))
+
+	return filtered[random]
 }
