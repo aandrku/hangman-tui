@@ -8,7 +8,6 @@ import (
 	"math"
 	"math/rand"
 	"os"
-	"slices"
 	"strings"
 	"sync"
 )
@@ -115,7 +114,14 @@ func (s *Store) DecreaseLength() {
 }
 
 func (s *Store) GetWord() string {
-	filtered := slices.DeleteFunc(s.words, func(val string) bool { return len(val) != s.length })
+	// filtered := slices.DeleteFunc(s.words, func(val string) bool { return len(val) != s.length })
+	filtered := make([]string, 0, len(s.words)/2)
+
+	for _, v := range s.words {
+		if len(v) == s.length {
+			filtered = append(filtered, v)
+		}
+	}
 
 	random := rand.Intn(len(filtered))
 

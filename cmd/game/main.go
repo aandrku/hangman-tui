@@ -11,7 +11,6 @@ import (
 
 func main() {
 	boot.StartUp()
-	defer boot.Shutdown("")
 
 	input.Init()
 	defer input.Close()
