@@ -37,7 +37,7 @@ func GetWidth() int {
 
 // GetHeight returns current screen height
 func GetHeight() int {
-	return currentWidth
+	return currentHeight
 }
 
 // updateSize updates screen dimensions based on the current terminal size

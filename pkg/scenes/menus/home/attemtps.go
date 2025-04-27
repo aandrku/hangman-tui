@@ -2,7 +2,7 @@ package home
 
 const (
 	minAttempts = 3
-	maxAttempts = 16
+	maxAttempts = 10
 )
 
 var attemptsCounter = 3

@@ -9,8 +9,8 @@ import (
 // Clear clears the screenBuffer.
 func Clear() {
 	emptyCell := Cell{
-		char:  ' ',
-		style: "",
+		Char:  ' ',
+		Style: "",
 	} // used to clean the screen
 
 	for r := range len(screenBuffer) {
@@ -31,8 +31,8 @@ func Update() {
 
 	for row := range currentHeight {
 		for col := range currentWidth {
-			char := screenBuffer[row][col].char
-			style := screenBuffer[row][col].style
+			char := screenBuffer[row][col].Char
+			style := screenBuffer[row][col].Style
 			cursor := fmt.Sprintf("\033[%d;%dH", row+1, col+1)
 
 			if currStyle != style {
@@ -71,8 +71,8 @@ func DrawChar(char rune, style ansi.EscapeSequence, row, column int) {
 	}
 
 	c := Cell{
-		char:  char,
-		style: style,
+		Char:  char,
+		Style: style,
 	}
 	screenBuffer[row][column] = c
 }

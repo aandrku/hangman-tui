@@ -53,6 +53,7 @@ func (g *Gameplay) ProcessLetter(letter rune) {
 	} else {
 		g.state.LettersDisplay.Cross(letter)
 		attemtpsLeft := g.state.AttemptsDisplay.Decrement()
+		g.state.Hangman.NextStage()
 		if attemtpsLeft < 1 {
 			g.state.SetStatus(state.GameLost)
 			g.manager.SetScene(scene.GameOver)
@@ -65,4 +66,5 @@ func (g *Gameplay) Render() {
 	g.state.LettersDisplay.Render()
 	g.state.WordDisplay.Render()
 	g.state.AttemptsDisplay.Render()
+	g.state.Hangman.Render()
 }

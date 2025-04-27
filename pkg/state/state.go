@@ -1,6 +1,7 @@
 package state
 
 import (
+	"hangman-tui/pkg/entities/hangman"
 	"hangman-tui/pkg/entities/hud"
 )
 
@@ -18,6 +19,7 @@ type State struct {
 	LettersDisplay  *hud.LettersDisplay
 	WordDisplay     *hud.WordDisplay
 	AttemptsDisplay *hud.AttemptsDisplay
+	Hangman         *hangman.Hangman
 
 	// For gameplay and home menu
 
@@ -40,6 +42,7 @@ func (s *State) Restart(word string, attempts int) {
 	s.Word = word
 	s.ProcessedLetters = make(map[rune]bool)
 	s.AttemptsDisplay = hud.NewAttemptsDisplay(attempts)
+	s.Hangman = hangman.New(hangman.StagesCount - attempts)
 
 	s.LettersDisplay = hud.NewLettersDisplay()
 	s.WordDisplay = hud.NewWordDisplay(word)
