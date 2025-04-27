@@ -7,7 +7,7 @@ import (
 func drawBase(buff *[height][width]screen.Cell) {
 	const baseStartRow = height - 1
 	const baseStartCol = 0
-	const baseRune = '═'
+	const baseRune = '▀'
 
 	row := baseStartRow
 	col := baseStartCol
@@ -22,17 +22,9 @@ func drawBase(buff *[height][width]screen.Cell) {
 }
 
 func drawPost(buff *[height][width]screen.Cell) {
-	postStartRow := height - 1
-	postStartCol := 1
+	row := height - 2
+	col := 1
 	postRune1 := '║'
-	postRune2 := '╩'
-
-	row, col := postStartRow, postStartCol
-	buff[row][col] = screen.Cell{
-		Char:  postRune2,
-		Style: postStyle,
-	}
-	row--
 
 	for ; row > 0; row-- {
 		buff[row][col] = screen.Cell{
@@ -92,18 +84,8 @@ func drawHead(buff *[height][width]screen.Cell) {
 	}
 
 }
-func drawUpperTorse(buff *[height][width]screen.Cell) {
+func drawTorso(buff *[height][width]screen.Cell) {
 	row := 3
-	col := 10
-	rune := '|'
-
-	buff[row][col] = screen.Cell{
-		Char:  rune,
-		Style: upperTorsoStyle,
-	}
-}
-func drawLowerTorso(buff *[height][width]screen.Cell) {
-	row := 4
 	col := 10
 	rune := '|'
 
@@ -136,7 +118,7 @@ func drawRightArm(buff *[height][width]screen.Cell) {
 
 }
 func drawLeftLeg(buff *[height][width]screen.Cell) {
-	row := 5
+	row := 4
 	col := 9
 	rune := '/'
 
@@ -147,7 +129,7 @@ func drawLeftLeg(buff *[height][width]screen.Cell) {
 
 }
 func drawRightLeg(buff *[height][width]screen.Cell) {
-	row := 5
+	row := 4
 	col := 11
 	rune := '\\'
 

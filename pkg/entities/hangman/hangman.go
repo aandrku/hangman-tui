@@ -10,12 +10,12 @@ const width = 12
 const StagesCount = 10
 
 var stages = []func(*[height][width]screen.Cell){
+	drawBase,
 	drawPost,
 	drawTopBar,
 	drawRope,
 	drawHead,
-	drawUpperTorse,
-	drawLowerTorso,
+	drawTorso,
 	drawLeftArm,
 	drawRightArm,
 	drawLeftLeg,
@@ -37,7 +37,13 @@ func New(stage int) *Hangman {
 		}
 	}
 
-	drawBase(&buff)
+	for c := range width {
+		buff[height-1][c] = screen.Cell{
+			Char:  '▀',
+			Style: groundStyle,
+		}
+	}
+
 	for s := range stage {
 		stages[s](&buff)
 	}
@@ -68,7 +74,7 @@ func (h *Hangman) Render() {
 	colIdx := colStart
 
 	for c := range screenWidth {
-		screen.DrawChar('═', groundStyle, screenHeight-3, c)
+		screen.DrawChar('▀', groundStyle, screenHeight-3, c)
 	}
 
 	for r := range height {
