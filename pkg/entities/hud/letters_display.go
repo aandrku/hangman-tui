@@ -37,9 +37,9 @@ func (ld *LettersDisplay) Render() {
 	row := 0
 	col := w - width - 1
 
-	draw.Box(row, col, height, width, ansi.Cyan)
+	draw.Box(row, col, height, width, borderStyle)
 
-	draw.String(" Letters ", ansi.Red, row, col+5)
+	draw.String(" Letters ", headerStyle, row, col+5)
 
 	curr := 'a'
 	last := 'z'

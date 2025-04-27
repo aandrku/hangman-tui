@@ -1,14 +1,12 @@
 package hangman
 
 import (
-	"hangman-tui/pkg/ansi"
 	"hangman-tui/pkg/screen"
 )
 
 func drawBase(buff *[height][width]screen.Cell) {
 	const baseStartRow = height - 1
 	const baseStartCol = 0
-	const baseStyle = ansi.Red
 	const baseRune = '═'
 
 	row := baseStartRow
@@ -26,7 +24,6 @@ func drawBase(buff *[height][width]screen.Cell) {
 func drawPost(buff *[height][width]screen.Cell) {
 	postStartRow := height - 1
 	postStartCol := 1
-	postStyle := ansi.Green
 	postRune1 := '║'
 	postRune2 := '╩'
 
@@ -54,14 +51,14 @@ func drawTopBar(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune1,
-		Style: ansi.Yellow,
+		Style: topBarStyle,
 	}
 	col++
 
 	for ; col < 10; col++ {
 		buff[row][col] = screen.Cell{
 			Char:  rune2,
-			Style: ansi.Yellow,
+			Style: topBarStyle,
 		}
 
 	}
@@ -75,12 +72,12 @@ func drawRope(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune1,
-		Style: ansi.Yellow,
+		Style: topBarStyle,
 	}
 	row++
 	buff[row][col] = screen.Cell{
 		Char:  rune2,
-		Style: ansi.Blue,
+		Style: ropeStyle,
 	}
 
 }
@@ -91,7 +88,7 @@ func drawHead(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Red,
+		Style: headStyle,
 	}
 
 }
@@ -102,7 +99,7 @@ func drawUpperTorse(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Magenta,
+		Style: upperTorsoStyle,
 	}
 }
 func drawLowerTorso(buff *[height][width]screen.Cell) {
@@ -112,7 +109,7 @@ func drawLowerTorso(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Magenta,
+		Style: lowerTorsoStyle,
 	}
 
 }
@@ -123,7 +120,7 @@ func drawLeftArm(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Magenta,
+		Style: armsStyle,
 	}
 
 }
@@ -134,7 +131,7 @@ func drawRightArm(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Magenta,
+		Style: armsStyle,
 	}
 
 }
@@ -145,7 +142,7 @@ func drawLeftLeg(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Magenta,
+		Style: legsStyle,
 	}
 
 }
@@ -156,7 +153,7 @@ func drawRightLeg(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: ansi.Magenta,
+		Style: legsStyle,
 	}
 
 }

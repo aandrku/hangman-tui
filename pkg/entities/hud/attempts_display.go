@@ -1,13 +1,11 @@
 package hud
 
 import (
-	"hangman-tui/pkg/ansi"
 	"hangman-tui/pkg/screen/draw"
 	"strconv"
 )
 
 func NewAttemptsDisplay(attempts int) *AttemptsDisplay {
-
 	return &AttemptsDisplay{
 		attemtps: attempts,
 	}
@@ -28,11 +26,11 @@ func (d *AttemptsDisplay) Render() {
 	width := 20
 	height := 3
 
-	draw.Box(row, col, height, width, ansi.Cyan)
+	draw.Box(row, col, height, width, borderStyle)
 
-	draw.String(" Attempts Left ", ansi.Red, row, col+2)
+	draw.String(" Attempts Left ", headerStyle, row, col+2)
 
 	content := strconv.Itoa(d.attemtps)
-	draw.String(content, ansi.Magenta, row+1, col+2)
+	draw.String(content, contentStyle, row+1, col+2)
 
 }

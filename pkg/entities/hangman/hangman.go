@@ -68,7 +68,7 @@ func (h *Hangman) Render() {
 	colIdx := colStart
 
 	for c := range screenWidth {
-		screen.DrawChar('═', ansi.Green, screenHeight-3, c)
+		screen.DrawChar('═', groundStyle, screenHeight-3, c)
 	}
 
 	for r := range height {
