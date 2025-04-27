@@ -9,6 +9,12 @@ import (
 	"hangman-tui/pkg/screen/draw"
 )
 
+var (
+	borderStyle = ansi.Color256(23)
+	headerStyle = ansi.Color256(108)
+	optionStyle = ansi.Color256(180)
+)
+
 type Menu struct {
 	currentOption int
 	options       []MenuOption

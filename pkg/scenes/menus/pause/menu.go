@@ -6,10 +6,10 @@ import (
 	"hangman-tui/pkg/scenes/scene"
 )
 
-const (
-	headerStyle = ansi.Green
-	borderStyle = ansi.Red
-	optionStyle = ansi.Cyan
+var (
+	borderStyle = ansi.Color256(23)
+	headerStyle = ansi.Color256(108)
+	optionStyle = ansi.Color256(180)
 )
 
 const (
