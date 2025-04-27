@@ -3,6 +3,7 @@ package hangman
 import (
 	"hangman-tui/pkg/ansi"
 	"hangman-tui/pkg/screen"
+	"time"
 )
 
 const height = 8
@@ -22,6 +23,8 @@ var stages = []func(*[height][width]screen.Cell){
 	drawRightLeg,
 }
 
+var grassChars = []rune{'^', '\'', '^', '.', '^', ',', '.', '\''}
+
 func New(stage int) *Hangman {
 	h := &Hangman{}
 
@@ -39,7 +42,7 @@ func New(stage int) *Hangman {
 
 	for c := range width {
 		buff[height-1][c] = screen.Cell{
-			Char:  '▀',
+			Char:  '^',
 			Style: groundStyle,
 		}
 	}
@@ -54,8 +57,9 @@ func New(stage int) *Hangman {
 }
 
 type Hangman struct {
-	buff  [height][width]screen.Cell
-	stage int
+	buff            [height][width]screen.Cell
+	stage           int
+	lastGrassChange time.Time
 }
 
 func (h *Hangman) NextStage() {
@@ -73,9 +77,22 @@ func (h *Hangman) Render() {
 	colStart := screenCenterCol - 10
 	colIdx := colStart
 
-	for c := range screenWidth {
-		screen.DrawChar('▀', groundStyle, screenHeight-3, c)
+	// for c := range screenWidth {
+	// 	screen.DrawChar('▀', groundStyle, screenHeight-3, c)
+	// }
+
+	charIdx := 0
+	for r := screenHeight - 3; r < screenHeight; r++ {
+		for c := range screenWidth {
+			if charIdx >= len(grassChars) {
+				charIdx = 0
+			}
+			char := grassChars[charIdx]
+			screen.DrawChar(char, groundStyle, r, c)
+			charIdx++
+		}
 	}
+	h.lastGrassChange = time.Now()
 
 	for r := range height {
 		for c := range width {
