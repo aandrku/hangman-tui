@@ -1,3 +1,5 @@
+// Package ansi provides named ANSI escape sequences
+// and primitive functions to generate such sequences.
 package ansi
 
 import (
