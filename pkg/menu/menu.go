@@ -9,12 +9,6 @@ import (
 	"hangman-tui/pkg/screen/draw"
 )
 
-var (
-	borderStyle = ansi.Color256(23)
-	headerStyle = ansi.Color256(108)
-	optionStyle = ansi.Color256(180)
-)
-
 type Menu struct {
 	currentOption int
 	options       []MenuOption
@@ -47,7 +41,7 @@ func (m *Menu) ProcessKey() {
 
 func (m *Menu) Render() {
 	centerCol, centerRow := screen.GetCenter()
-	startRow := centerRow - m.height/2
+	startRow := centerRow - m.height/2 + 8
 	startCol := centerCol - m.width/2
 
 	headerStartCol := centerCol - len(m.header)/2
