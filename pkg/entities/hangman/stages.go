@@ -91,7 +91,7 @@ func drawTorso(buff *[height][width]screen.Cell) {
 
 	buff[row][col] = screen.Cell{
 		Char:  rune,
-		Style: lowerTorsoStyle,
+		Style: torsoStyle,
 	}
 
 }
