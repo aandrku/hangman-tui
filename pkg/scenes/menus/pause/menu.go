@@ -19,7 +19,7 @@ const (
 
 // Menu represents a home menu scene.
 func NewMenu(manager scene.Manager) *menu.Menu {
-	m := &menu.Menu{}
+	m := menu.New()
 
 	m.SetHeader(" Game Paused ")
 	m.SetWidth(width)

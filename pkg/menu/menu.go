@@ -4,15 +4,23 @@ import (
 	"fmt"
 	"github.com/eiannone/keyboard"
 	"hangman-tui/pkg/ansi"
+	"hangman-tui/pkg/entities/banner"
 	"hangman-tui/pkg/input"
 	"hangman-tui/pkg/screen"
 	"hangman-tui/pkg/screen/draw"
 )
 
+func New() *Menu {
+	return &Menu{
+		banner: banner.New(),
+	}
+}
+
 type Menu struct {
 	currentOption int
 	options       []MenuOption
 	header        string
+	banner        banner.Banner
 
 	width  int
 	height int
@@ -40,6 +48,8 @@ func (m *Menu) ProcessKey() {
 }
 
 func (m *Menu) Render() {
+	m.banner.Render()
+
 	centerCol, centerRow := screen.GetCenter()
 	startRow := centerRow - m.height/2 + 8
 	startCol := centerCol - m.width/2
