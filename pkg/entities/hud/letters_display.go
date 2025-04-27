@@ -52,7 +52,7 @@ func (ld *LettersDisplay) Render() {
 	for curr <= last {
 		style := ansi.White
 		if _, ok := ld.crossed[curr]; ok {
-			style = ansi.Red
+			style = ansi.Red + ansi.Crossed
 		}
 		if _, ok := ld.reveiled[curr]; ok {
 			style = ansi.Green
