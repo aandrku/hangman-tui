@@ -63,6 +63,9 @@ watermelon
 
 ### Requirements
 - ANSI terminal.
+- Linux/MacOS system
 - A compiled binary of the Hangman TUI game.
 
+## Download
 
+See the [releases page](https://github.com/aandrku/hangman-tui/releases).
