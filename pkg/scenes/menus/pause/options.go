@@ -14,7 +14,7 @@ func (r ReturnToGameOption) OnRight() {}
 func (r ReturnToGameOption) OnEnter() {
 	r.manager.SetScene(scene.Gameplay)
 }
-func (r ReturnToGameOption) String() string { return " Return to the Game" }
+func (r ReturnToGameOption) String() string { return " Resume Game" }
 
 type BackToHomeMenuOption struct {
 	manager scene.Manager
@@ -25,7 +25,7 @@ func (b BackToHomeMenuOption) OnRight() {}
 func (b BackToHomeMenuOption) OnEnter() {
 	b.manager.SetScene(scene.HomeMenu)
 }
-func (b BackToHomeMenuOption) String() string { return " Back to Home Menu" }
+func (b BackToHomeMenuOption) String() string { return " Exit to Home Menu" }
 
 type ReturnToShellOption struct {
 }
@@ -35,4 +35,4 @@ func (r ReturnToShellOption) OnRight() {}
 func (po ReturnToShellOption) OnEnter() {
 	boot.Shutdown("")
 }
-func (r ReturnToShellOption) String() string { return " Return to Shell" }
+func (r ReturnToShellOption) String() string { return " Exit the Game" }
