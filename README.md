@@ -1,11 +1,6 @@
 ![Cool image here](images/hangman.png)
-<h1>
-    <p align="center">
-    <br>
-</h1>
 <p align="center">
     A minimal Hangman game for the terminal.
-    <br />
 </p>
 
 ## About
