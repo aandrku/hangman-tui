@@ -57,6 +57,10 @@ func (s *Store) ReadFromFile(file string) error {
 	r := bufio.NewReader(f)
 
 	s.readReader(r)
+
+	if len(s.words) < 1 {
+		return fmt.Errorf("the word list is empty")
+	}
 	return nil
 }
 
