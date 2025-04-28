@@ -1,4 +1,5 @@
 <h1>
+    ![Cool image here](images/hangman.png)
     <p align="center">
     <br>Hangman TUI
 </h1>
