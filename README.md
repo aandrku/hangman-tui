@@ -22,6 +22,10 @@ too many wrong guesses and you lose!
 Perfect for developers, students, and anyone who lives in the terminal
 and needs a small, fun distraction.
 
+## Demo
+![](images/hangman-demo.gif)
+
+
 ## How to play?
 
 ### 1. **Play with default words**
