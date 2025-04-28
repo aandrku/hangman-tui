@@ -20,3 +20,15 @@ too many wrong guesses and you lose!
 
 Perfect for developers, students, and anyone who lives in the terminal
 and needs a small, fun distraction.
+
+## How to play?
+
+### 1. **Play with default words**
+
+To play the game with the default word list, simply execute the binary:
+```bash
+./hangman-tui
+```
+The will start from the home menu.
+You will be given the opportunity to select the length of the word and number of attempts.
+The word must be guessed before you run out of attempts, otherwise you lose.
