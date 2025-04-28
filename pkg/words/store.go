@@ -10,6 +10,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"unicode"
 )
 
 var lock sync.Mutex
@@ -70,11 +71,18 @@ func (s *Store) readReader(reader *bufio.Reader) {
 	for err == nil {
 		word, err = reader.ReadString('\n')
 		word = strings.Trim(word, " \n")
+		invalid := false
 
+		for _, v := range word {
+			if !unicode.IsLetter(v) {
+				invalid = true
+			}
+		}
 		length := len(word)
-		if length <= 0 {
+		if length <= 0 || invalid {
 			continue
 		}
+
 		if length < s.minLength {
 			s.minLength = length
 		}
@@ -82,6 +90,7 @@ func (s *Store) readReader(reader *bufio.Reader) {
 			s.maxLength = length
 		}
 		s.availableLength[length] = true
+		word = strings.ToLower(word)
 		s.words = append(s.words, word)
 	}
 	s.length = s.minLength
