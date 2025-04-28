@@ -4,9 +4,16 @@ import (
 	"fmt"
 	"github.com/eiannone/keyboard"
 	"hangman-tui/pkg/ansi"
+	"hangman-tui/pkg/input"
 	"os"
 )
 
+// Shutdown gracefully terminates the Hangman game.
+//
+// It shows the cursor, clears the screen, displays a farewell message or an error message in red,
+// resets the terminal colors, closes the keyboard input and exits the program.
+//
+// If closing the keyboard input fails, the function panics.
 func Shutdown(msg string) {
 	// show cursor
 	fmt.Print(ansi.ShowCursor)
@@ -22,10 +29,11 @@ func Shutdown(msg string) {
 	fmt.Print(ansi.Reset)
 
 	// close keyboard
-	err := keyboard.Close()
-	if err != nil {
+	if err := keyboard.Close(); err != nil {
 		panic(err)
 	}
+
+	input.Close()
 
 	os.Exit(0)
 }

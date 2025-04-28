@@ -1,18 +1,20 @@
 package input
 
 import (
+	"fmt"
 	"github.com/eiannone/keyboard"
-	"hangman-tui/pkg/boot"
+	"os"
 )
 
 var keyboardInput <-chan keyboard.KeyEvent
 
-func Init() {
+func Init() error {
 	var err error
 	keyboardInput, err = keyboard.GetKeys(1)
 	if err != nil {
-		boot.Shutdown("Hangman TUI failed to open keyboard: " + err.Error())
+		return fmt.Errorf("could not open keyboard: %v", err)
 	}
+	return nil
 }
 
 func Close() {
@@ -21,7 +23,7 @@ func Close() {
 
 func preprocessKey(key keyboard.KeyEvent) {
 	if key.Key == keyboard.KeyCtrlC {
-		boot.Shutdown("")
+		os.Exit(0)
 	}
 }
 

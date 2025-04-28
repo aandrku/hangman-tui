@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	_ "embed"
-	"hangman-tui/pkg/boot"
+	"fmt"
 	"math"
 	"math/rand"
 	"os"
@@ -44,10 +44,10 @@ func (s *Store) readDefaultWords() {
 	s.readReader(r)
 }
 
-func (s *Store) ReadFromFile(file string) {
+func (s *Store) ReadFromFile(file string) error {
 	f, err := os.Open(file)
 	if err != nil {
-		boot.Shutdown("Failed to get words: " + err.Error())
+		return fmt.Errorf("could not get list of words: %v", err)
 	}
 	defer func() {
 		_ = f.Close()
@@ -56,6 +56,7 @@ func (s *Store) ReadFromFile(file string) {
 	r := bufio.NewReader(f)
 
 	s.readReader(r)
+	return nil
 }
 
 func (s *Store) readReader(reader *bufio.Reader) {
