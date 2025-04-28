@@ -71,4 +71,4 @@ func (eo ExitOption) OnRight() {}
 func (eo ExitOption) OnEnter() {
 	boot.Shutdown("")
 }
-func (eo ExitOption) String() string { return " Exit" }
+func (eo ExitOption) String() string { return " Exit the Game" }
